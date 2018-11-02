@@ -6,8 +6,8 @@ var inquirer = require("inquirer");
 // global empty placeholder objects
 var current;
 var currentWord;
-var guesses;
-var guessesLeft;
+guesses = [];
+guessesLeft = 9;
 
 // array of unique names from differant movies
 var movieNames = [
@@ -32,6 +32,10 @@ randomWord = function(movieNames){
 // randomWord function testing and setting of global currentWord object
 currentWord = randomWord(movieNames);
     console.log("Current Word: " + currentWord);
+    // current is the letter array for the currentword
+    current = new Word(currentWord);
+    console.log("current")
+    console.log(current)
 
 
 //The questions are objects that contain functions in an array
@@ -76,7 +80,6 @@ var gameQuestions = [
 
 // resets the game to defaults
 var restartGame = function(){
-
     currentWord = randomWord(movieNames);
     current = new Word(currentWord);
     current.inputGuess(" ");
@@ -99,8 +102,11 @@ var askQuestion = function(){
     
     // ask the user the questions using the inquierer npm to start or end a game session
     inquirer.prompt(gameQuestions).then(answers => {
+        console.log("answers");
+        console.log(answers);
 
         // if a user chooses to not play a new game give response and end the game
+        // The in operator returns true if the specified property is in the specified object or its prototype chain.
         if("newGame" in answers && !answers.newGame) {
             console.log("Smell ya later!");
             process.exit();
@@ -112,7 +118,7 @@ var askQuestion = function(){
         }
 
         //The hasOwnProperty() method returns a boolean indicating whether the object has 
-        //the specified property as its own property (as opposed to inheriting it). **ends at  line 121
+        //the specified property as its own property (as opposed to inheriting it).
         if (answers.hasOwnProperty("GuessLetter")) {
 
             var input = answers.GuessLetter.toLowerCase();
@@ -140,7 +146,7 @@ var askQuestion = function(){
 
              // otherwise update guesses clientside of what happened in input function above
             }else {
-                console.log("Total guesses: ", guesses.join(" "));
+                console.log("Total guesses: ", guesses);
                 console.log("Guesses remaining: ", guessesLeft);
             }
 
@@ -157,6 +163,6 @@ var askQuestion = function(){
 
 }// end of general game flow function
  
-  restartGame();
+  askQuestion();
   
 
