@@ -1,3 +1,10 @@
+//Currently does not work it does not ask the questions or accept inputs..
+//It currently displays guesses and underscores in a infinite loop.
+// im still debugging things and hope to have it working soon. Time got away from me so i did not have the time to focus and grind
+// in this one like i wanted to. The tsets for the required other filees work fine but it was the bringing it all together is difficult
+
+
+
 var Word = require("./Word");
 var inquirer = require("inquirer");
 //var prompt = require("prompt")
